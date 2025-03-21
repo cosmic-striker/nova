@@ -1,0 +1,19 @@
+{
+    "user_agent": "NOVA-Scraper/1.0",
+    "delay": 2,
+    "urls": ["https://example.com/products"],
+    "parser": {
+      "items": ".product-item",
+      "fields": {
+        "title": {"selector": "h2.product-title", "attribute": "text"},
+        "price": {"selector": ".price", "attribute": "text"},
+        "url": {"selector": "a.product-link", "attribute": "href"},
+        "image": {"selector": "img.product-image", "attribute": "src"}
+      },
+      "pagination": {
+        "next_selector": "a.next-page",
+        "attribute": "href",
+        "base_url": "https://example.com"
+      }
+    }
+  }

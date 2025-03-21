@@ -1,0 +1,486 @@
+[
+    {
+        "label": "whois",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "whois",
+        "description": "whois",
+        "detail": "whois",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "BeautifulSoup",
+        "importPath": "bs4",
+        "description": "bs4",
+        "isExtraImport": true,
+        "detail": "bs4",
+        "documentation": {}
+    },
+    {
+        "label": "BeautifulSoup",
+        "importPath": "bs4",
+        "description": "bs4",
+        "isExtraImport": true,
+        "detail": "bs4",
+        "documentation": {}
+    },
+    {
+        "label": "logging",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "session",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "flash",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "SQLAlchemy",
+        "importPath": "flask_sqlalchemy",
+        "description": "flask_sqlalchemy",
+        "isExtraImport": true,
+        "detail": "flask_sqlalchemy",
+        "documentation": {}
+    },
+    {
+        "label": "Bcrypt",
+        "importPath": "flask_bcrypt",
+        "description": "flask_bcrypt",
+        "isExtraImport": true,
+        "detail": "flask_bcrypt",
+        "documentation": {}
+    },
+    {
+        "label": "LoginManager",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "UserMixin",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "login_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "login_required",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "logout_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "current_user",
+        "importPath": "flask_login",
+        "description": "flask_login",
+        "isExtraImport": true,
+        "detail": "flask_login",
+        "documentation": {}
+    },
+    {
+        "label": "CSRFProtect",
+        "importPath": "flask_wtf.csrf",
+        "description": "flask_wtf.csrf",
+        "isExtraImport": true,
+        "detail": "flask_wtf.csrf",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "whois_lookup",
+        "kind": 2,
+        "importPath": "scraping_modules.nova_scraper",
+        "description": "scraping_modules.nova_scraper",
+        "peekOfCode": "def whois_lookup(domain: str) -> str:\n    try:\n        domain_info = whois.whois(domain)\n        if domain_info:\n            info_parts = [\n                f\"Domain Name: {domain_info.domain_name}\",\n                f\"Registrar: {domain_info.registrar}\",\n                f\"Creation Date: {domain_info.creation_date}\",\n                f\"Expiration Date: {domain_info.expiration_date}\",\n                f\"Name Servers: {domain_info.name_servers}\"",
+        "detail": "scraping_modules.nova_scraper",
+        "documentation": {}
+    },
+    {
+        "label": "extract_emails",
+        "kind": 2,
+        "importPath": "scraping_modules.nova_scraper",
+        "description": "scraping_modules.nova_scraper",
+        "peekOfCode": "def extract_emails(text: str) -> List[str]:\n    \"\"\"\n    Extract email addresses from a given text using regex.\n    \"\"\"\n    email_pattern = r'[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+'\n    emails = re.findall(email_pattern, text)\n    return list(set(emails))  # Remove duplicates\ndef filter_emails_by_domain(emails: List[str], domain: str) -> List[str]:\n    \"\"\"\n    Filter a list of emails to only include those ending with the specified domain.",
+        "detail": "scraping_modules.nova_scraper",
+        "documentation": {}
+    },
+    {
+        "label": "filter_emails_by_domain",
+        "kind": 2,
+        "importPath": "scraping_modules.nova_scraper",
+        "description": "scraping_modules.nova_scraper",
+        "peekOfCode": "def filter_emails_by_domain(emails: List[str], domain: str) -> List[str]:\n    \"\"\"\n    Filter a list of emails to only include those ending with the specified domain.\n    \"\"\"\n    domain = domain.lower()\n    return [email for email in emails if email.lower().endswith(\"@\" + domain)]\ndef basic_web_scraping(email: str) -> str:\n    # Prepare the search URL for the provided email\n    url = f\"https://www.google.com/search?q={email}+breach\"\n    headers = {",
+        "detail": "scraping_modules.nova_scraper",
+        "documentation": {}
+    },
+    {
+        "label": "basic_web_scraping",
+        "kind": 2,
+        "importPath": "scraping_modules.nova_scraper",
+        "description": "scraping_modules.nova_scraper",
+        "peekOfCode": "def basic_web_scraping(email: str) -> str:\n    # Prepare the search URL for the provided email\n    url = f\"https://www.google.com/search?q={email}+breach\"\n    headers = {\n        \"User-Agent\": (\n            \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) \"\n            \"AppleWebKit/537.36 (KHTML, like Gecko) \"\n            \"Chrome/91.0.4472.124 Safari/537.36\"\n        )\n    }",
+        "detail": "scraping_modules.nova_scraper",
+        "documentation": {}
+    },
+    {
+        "label": "User",
+        "kind": 6,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "class User(UserMixin, db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(50), unique=True, nullable=False)\n    email = db.Column(db.String(100), unique=True, nullable=False)\n    password = db.Column(db.String(200), nullable=False)\n@login_manager.user_loader\ndef load_user(user_id):\n    return User.query.get(int(user_id))\n# Load scraper configuration from config.json\nCONFIG_PATH = \"config.json\"",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "load_user",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def load_user(user_id):\n    return User.query.get(int(user_id))\n# Load scraper configuration from config.json\nCONFIG_PATH = \"config.json\"\ndef load_config():\n    with open(CONFIG_PATH, \"r\") as f:\n        return json.load(f)\n# Scraping function using the configuration file\ndef nova_scraper():\n    config = load_config()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "load_config",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def load_config():\n    with open(CONFIG_PATH, \"r\") as f:\n        return json.load(f)\n# Scraping function using the configuration file\ndef nova_scraper():\n    config = load_config()\n    headers = {\"User-Agent\": config.get(\"user_agent\", \"NOVA-Scraper/1.0\")}\n    results = []\n    # Loop through each URL specified in config.json\n    for url in config.get(\"urls\", []):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "nova_scraper",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def nova_scraper():\n    config = load_config()\n    headers = {\"User-Agent\": config.get(\"user_agent\", \"NOVA-Scraper/1.0\")}\n    results = []\n    # Loop through each URL specified in config.json\n    for url in config.get(\"urls\", []):\n        while url:\n            try:\n                response = requests.get(url, headers=headers)\n                soup = BeautifulSoup(response.text, \"html.parser\")",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "perform_search",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def perform_search(query, filters):\n    # This dummy implementation returns some fake results based on the query.\n    dummy_results = {\n        \"count\": 25,\n        \"results\": [\n            {\n                \"id\": i,\n                \"source\": \"Example\",\n                \"username\": f\"user{i}\",\n                \"content\": f\"Result content for '{query}' number {i}\",",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def index():\n    return render_template('index.html', user=current_user)\n@app.route('/dashboard')\n@login_required\ndef dashboard():\n    # Optionally, you can perform scraping on-demand or show recent scrapes.\n    scrape_results = nova_scraper()\n    return render_template('dashboard.html', user=current_user, scrape_results=scrape_results)\n@app.route('/search_history')\n@login_required",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "dashboard",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def dashboard():\n    # Optionally, you can perform scraping on-demand or show recent scrapes.\n    scrape_results = nova_scraper()\n    return render_template('dashboard.html', user=current_user, scrape_results=scrape_results)\n@app.route('/search_history')\n@login_required\ndef search_history():\n    # For demonstration, using dummy history data.\n    history_data = [\n        {'timestamp': '2023-03-15 10:00', 'url': 'https://example.com', 'items_scraped': 5},",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "search_history",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def search_history():\n    # For demonstration, using dummy history data.\n    history_data = [\n        {'timestamp': '2023-03-15 10:00', 'url': 'https://example.com', 'items_scraped': 5},\n        {'timestamp': '2023-03-16 14:20', 'url': 'https://another.com', 'items_scraped': 10}\n    ]\n    return render_template('search_history.html', recent_history=history_data)\n@app.route('/analytics')\n@login_required\ndef analytics():",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "analytics",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def analytics():\n    return \"Nothing here.\"\n@app.route('/settings')\n@login_required\ndef settings():\n    return \"Nothing here.\"\n@app.route('/help_page')\n@login_required\ndef help_page():\n    return \"Nothing here.\"",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def settings():\n    return \"Nothing here.\"\n@app.route('/help_page')\n@login_required\ndef help_page():\n    return \"Nothing here.\"\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    if request.method == 'POST':\n        username = request.form['username']",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "help_page",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def help_page():\n    return \"Nothing here.\"\n@app.route('/login', methods=['GET', 'POST'])\ndef login():\n    if request.method == 'POST':\n        username = request.form['username']\n        password = request.form['password']\n        user = User.query.filter_by(username=username).first()\n        if user and bcrypt.check_password_hash(user.password, password):\n            login_user(user)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "login",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def login():\n    if request.method == 'POST':\n        username = request.form['username']\n        password = request.form['password']\n        user = User.query.filter_by(username=username).first()\n        if user and bcrypt.check_password_hash(user.password, password):\n            login_user(user)\n            flash(\"Login successful!\", \"success\")\n            return redirect(url_for('dashboard'))\n        else:",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "register",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def register():\n    if request.method == 'POST':\n        username = request.form['username']\n        email = request.form['email']\n        password = request.form['password']\n        print(f\"{username} {email} {password}\")\n        confirm_password = request.form['confirm_password']\n        if password != confirm_password:\n            flash(\"Passwords do not match.\", \"danger\")\n            return render_template('register.html')",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "logout",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def logout():\n    logout_user()\n    flash(\"Logged out successfully!\", \"info\")\n    return redirect(url_for('index'))\n# API endpoint for search (used by main.js)\n@app.route('/search', methods=['POST'])\n@csrf.exempt  # If you handle CSRF manually in your JS, you can exempt this route or include the token\ndef search():\n    data = request.get_json()\n    query = data.get('query', '').strip()",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "search",
+        "kind": 2,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "def search():\n    data = request.get_json()\n    query = data.get('query', '').strip()\n    filters = data.get('filters', {})\n    if not query:\n        return jsonify({\"error\": \"Empty search query\"}), 400\n    search_results = perform_search(query, filters)\n    return jsonify(search_results)\n# --------------------\n# Main entry point",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app = Flask(__name__)\napp.config['SECRET_KEY'] = 'your_secret_key_here'\napp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\n# Initialize extensions\ndb = SQLAlchemy(app)\nbcrypt = Bcrypt(app)\nlogin_manager = LoginManager(app)\nlogin_manager.login_view = \"login\"\ncsrf = CSRFProtect(app)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['SECRET_KEY']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['SECRET_KEY'] = 'your_secret_key_here'\napp.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\n# Initialize extensions\ndb = SQLAlchemy(app)\nbcrypt = Bcrypt(app)\nlogin_manager = LoginManager(app)\nlogin_manager.login_view = \"login\"\ncsrf = CSRFProtect(app)\n# User model for authentication",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['SQLALCHEMY_DATABASE_URI']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'\napp.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\n# Initialize extensions\ndb = SQLAlchemy(app)\nbcrypt = Bcrypt(app)\nlogin_manager = LoginManager(app)\nlogin_manager.login_view = \"login\"\ncsrf = CSRFProtect(app)\n# User model for authentication\nclass User(UserMixin, db.Model):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "app.config['SQLALCHEMY_TRACK_MODIFICATIONS']",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False\n# Initialize extensions\ndb = SQLAlchemy(app)\nbcrypt = Bcrypt(app)\nlogin_manager = LoginManager(app)\nlogin_manager.login_view = \"login\"\ncsrf = CSRFProtect(app)\n# User model for authentication\nclass User(UserMixin, db.Model):\n    id = db.Column(db.Integer, primary_key=True)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "db = SQLAlchemy(app)\nbcrypt = Bcrypt(app)\nlogin_manager = LoginManager(app)\nlogin_manager.login_view = \"login\"\ncsrf = CSRFProtect(app)\n# User model for authentication\nclass User(UserMixin, db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(50), unique=True, nullable=False)\n    email = db.Column(db.String(100), unique=True, nullable=False)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "bcrypt",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "bcrypt = Bcrypt(app)\nlogin_manager = LoginManager(app)\nlogin_manager.login_view = \"login\"\ncsrf = CSRFProtect(app)\n# User model for authentication\nclass User(UserMixin, db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(50), unique=True, nullable=False)\n    email = db.Column(db.String(100), unique=True, nullable=False)\n    password = db.Column(db.String(200), nullable=False)",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "login_manager",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "login_manager = LoginManager(app)\nlogin_manager.login_view = \"login\"\ncsrf = CSRFProtect(app)\n# User model for authentication\nclass User(UserMixin, db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(50), unique=True, nullable=False)\n    email = db.Column(db.String(100), unique=True, nullable=False)\n    password = db.Column(db.String(200), nullable=False)\n@login_manager.user_loader",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "login_manager.login_view",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "login_manager.login_view = \"login\"\ncsrf = CSRFProtect(app)\n# User model for authentication\nclass User(UserMixin, db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(50), unique=True, nullable=False)\n    email = db.Column(db.String(100), unique=True, nullable=False)\n    password = db.Column(db.String(200), nullable=False)\n@login_manager.user_loader\ndef load_user(user_id):",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "csrf",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "csrf = CSRFProtect(app)\n# User model for authentication\nclass User(UserMixin, db.Model):\n    id = db.Column(db.Integer, primary_key=True)\n    username = db.Column(db.String(50), unique=True, nullable=False)\n    email = db.Column(db.String(100), unique=True, nullable=False)\n    password = db.Column(db.String(200), nullable=False)\n@login_manager.user_loader\ndef load_user(user_id):\n    return User.query.get(int(user_id))",
+        "detail": "app",
+        "documentation": {}
+    },
+    {
+        "label": "CONFIG_PATH",
+        "kind": 5,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "CONFIG_PATH = \"config.json\"\ndef load_config():\n    with open(CONFIG_PATH, \"r\") as f:\n        return json.load(f)\n# Scraping function using the configuration file\ndef nova_scraper():\n    config = load_config()\n    headers = {\"User-Agent\": config.get(\"user_agent\", \"NOVA-Scraper/1.0\")}\n    results = []\n    # Loop through each URL specified in config.json",
+        "detail": "app",
+        "documentation": {}
+    }
+]

@@ -1,0 +1,368 @@
+{% extends "layout.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Dashboard</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Quick Scrape</h5>
+            </div>
+            <div class="card-body">
+                <form id="quick-scrape-form">
+                    <div class="mb-3">
+                        <label for="url" class="form-label">URL to Scrape</label>
+                        <input type="url" class="form-control" id="url" name="url" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="selector" class="form-label">CSS Selector</label>
+                        <input type="text" class="form-control" id="selector" name="selector" placeholder=".product-item">
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" id="advanced-mode">
+                            <label class="form-check-label" for="advanced-mode">Advanced Mode</label>
+                        </div>
+                    </div>
+                    <div id="advanced-options" style="display: none;">
+                        <div class="mb-3">
+                            <label for="config" class="form-label">Configuration JSON</label>
+                            <textarea class="form-control" id="config" rows="5" placeholder='{"fields": {"title": {"selector": "h2.title"}}}'></textarea>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Start Scraping</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Scraper Stats</h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-6">
+                        <h2>{{ analytics.total_scrapes }}</h2>
+                        <p>Total Scrapes</p>
+                    </div>
+                    <div class="col-6">
+                        <h2>{{ analytics.total_items_scraped }}</h2>
+                        <p>Total Items Scraped</p>
+                    </div>
+                </div>
+                <canvas id="scraping-chart" height="200"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="card-title mb-0">Recent Scraping Activity</h5>
+                <a href="{{ url_for (search_history) }}" class="btn btn-sm btn-outline-light">View All</a>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>URL</th>
+                                <th>Items Scraped</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for entry in recent_history %}
+                            <tr>
+                                <td>{{ entry.timestamp }}</td>
+                                <td>{{ entry.url }}</td>
+                                <td>{{ entry.items_scraped }}</td>
+                                <td>
+                                    <button class="btn btn-sm btn-outline-primary view-results" data-index="{{ loop.index0 }}">View Results</button>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="4" class="text-center">No scraping history yet</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Results</h5>
+            </div>
+            <div class="card-body">
+                <div id="results-container">
+                    <p class="text-center">Run a scrape to see results here</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Advanced mode toggle
+        document.getElementById('advanced-mode').addEventListener('change', function() {
+            document.getElementById('advanced-options').style.display = this.checked ? 'block' : 'none';
+        });
+        
+        // Quick scrape form submission
+        document.getElementById('quick-scrape-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const url = document.getElementById('url').value;
+            const selector = document.getElementById('selector').value;
+            const isAdvancedMode = document.getElementById('advanced-mode').checked;
+            
+            let config = {
+                parser: {
+                    items: selector || 'div',
+                    fields: {
+                        content: { selector: '*', attribute: 'text' }
+                    }
+                }
+            };
+            
+            if (isAdvancedMode) {
+                try {
+                    const customConfig = JSON.parse(document.getElementById('config').value);
+                    config = { ...config, ...customConfig };
+                } catch (error) {
+                    alert('Invalid JSON configuration');
+                    return;
+                }
+            }
+            
+            // Show loading state
+            document.getElementById('results-container').innerHTML = `
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p>Scraping in progress...</p>
+                </div>
+            `;
+            
+            // Make API request
+            fetch('/api/scrape', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ url, config })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    displayResults(data.results);
+                    // Update the page without refreshing
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
+                } else {
+                    document.getElementById('results-container').innerHTML = `
+                        <div class="alert alert-danger">
+                            ${data.error || 'An error occurred while scraping'}
+                        </div>
+                    `;
+                }
+            })
+            .catch(error => {
+                document.getElementById('results-container').innerHTML = `
+                    <div class="alert alert-danger">
+                        ${error.message || 'An error occurred while scraping'}
+                    </div>
+                `;
+            });
+        });
+        
+        function displayResults(results) {
+            const container = document.getElementById('results-container');
+            
+            if (!results || results.length === 0) {
+                container.innerHTML = '<p class="text-center">No results found</p>';
+                return;
+            }
+            
+            let html = `
+                <p>Found ${results.length} results</p>
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+            `;
+            
+            // Generate table headers from the first result's keys
+            const keys = Object.keys(results[0]);
+            keys.forEach(key => {
+                html += `<th>${key}</th>`;
+            });
+            
+            html += `
+                            </tr>
+                        </thead>
+                        <tbody>
+            `;
+            
+            // Generate table rows
+            results.forEach(result => {
+                html += '<tr>';
+                keys.forEach(key => {
+                    html += `<td>${result[key] || '-'}</td>`;
+                });
+                html += '</tr>';
+            });
+            
+            html += `
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-3">
+                    <button class="btn btn-primary" id="download-json">Download JSON</button>
+                    <button class="btn btn-primary ms-2" id="download-csv">Download CSV</button>
+                </div>
+            `;
+            
+            container.innerHTML = html;
+            
+            // Setup download buttons
+            document.getElementById('download-json').addEventListener('click', () => {
+                downloadData(results, 'json');
+            });
+            
+            document.getElementById('download-csv').addEventListener('click', () => {
+                downloadData(results, 'csv');
+            });
+        }
+        
+        function downloadData(data, format) {
+            let content, filename, type;
+            
+            if (format === 'json') {
+                content = JSON.stringify(data, null, 2);
+                filename = 'nova-scraper-results.json';
+                type = 'application/json';
+            } else {
+                // Create CSV
+                const keys = Object.keys(data[0]);
+                const csvRows = [keys.join(',')];
+                
+                data.forEach(item => {
+                    const values = keys.map(key => {
+                        const value = item[key] || '';
+                        return `"${value.toString().replace(/"/g, '""')}"`;
+                    });
+                    csvRows.push(values.join(','));
+                });
+                
+                content = csvRows.join('\n');
+                filename = 'nova-scraper-results.csv';
+                type = 'text/csv';
+            }
+            
+            const blob = new Blob([content], { type });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+        
+        // Initialize Chart
+        const ctx = document.getElementById('scraping-chart').getContext('2d');
+        const monthlyStats = {{ analytics.monthly_stats|tojson }};
+        
+        const labels = Object.keys(monthlyStats).sort();
+        const scrapeData = labels.map(month => monthlyStats[month].scrapes);
+        const itemsData = labels.map(month => monthlyStats[month].items);
+        
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Scrapes',
+                        data: scrapeData,
+                        borderColor: '#4a5bf2',
+                        backgroundColor: 'rgba(74, 91, 242, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    },
+                    {
+                        label: 'Items Scraped',
+                        data: itemsData,
+                        borderColor: '#f24a5b',
+                        backgroundColor: 'rgba(242, 74, 91, 0.1)',
+                        tension: 0.3,
+                        fill: true
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: '#d1d5db'
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#d1d5db'
+                        }
+                    },
+                    y: {
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#d1d5db'
+                        }
+                    }
+                }
+            }
+        });
+        
+        // View Results button functionality
+        document.querySelectorAll('.view-results').forEach(button => {
+            button.addEventListener('click', function() {
+                const index = this.getAttribute('data-index');
+                // In a real app, you would fetch the results from the server
+                alert(`Results would be shown for history entry at index ${index}`);
+            });
+        });
+    });
+</script>
+{% endblock %}
